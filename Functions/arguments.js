@@ -21,3 +21,7 @@ let getTip = function(total, tipPercent = .2){
 
 let tip = getTip(40,undefined);
 console.log(tip);
+
+let name = 'Jen';
+
+console.log(`Hey, my name is ${name}`);
