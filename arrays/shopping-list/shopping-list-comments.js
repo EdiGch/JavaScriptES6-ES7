@@ -11,8 +11,14 @@ shoppingList.forEach(function (element, index) {
     console.log(` Details list: ${showShoppingList}`);
 });
 
-shoppingList.splice(1, 1);
+// adding an element to an array
+//shoppingList.pop();
 shoppingList.push('strawberry cake');
-shoppingList.shift();
+
+//shoppingList.shift();
+//shoppingList.unshift('chocolate');
+
+//shoppingList.splice(1, 0, 'Tea. The second element.');
+shoppingList[1] = 'Tea. The second element.';
 
 console.log(shoppingList);
