@@ -1,20 +1,57 @@
-const titleToDo = document.getElementsByClassName('title-todo');
-const searchWord = 'the';
+const notes = [{
+    title: 'Wash the car',
+    complete: false
+}, {
+    title: 'Make an appointment with a hairdresser',
+    complete: true
+}, {
+    title: 'Do your shopping for the whole week',
+    complete: false
+}, {
+    title: 'Put the car up for sale',
+    complete: true
+}]
 
-var titlesToDoArray = Array.from(titleToDo);
+// const titleToDo = document.getElementsByClassName('title-todo');
+// const searchWord = 'the';
+// var titlesToDoArray = Array.from(titleToDo);
+//
+// const findInTitel = function(titlesArray, searchString ){
+//
+//     titlesArray.forEach(function (value, index) {
+//         let parent = value.parentElement;
+//         parent = parent.parentElement
+//
+//         if(value.textContent.match(searchString) ){
+//             parent.remove();
+//         }
+//     });
+// };
+//
+// console.log( findInTitel(titlesToDoArray, searchWord) );
 
-const findInTitel = function(titlesArray, searchString ){
 
-    titlesArray.forEach(function (value, index) {
-        let parent = value.parentElement;
-        parent = parent.parentElement
+let placeToCopy = document.getElementById('listToDo');
 
-        if(value.textContent.match(searchString) ){
-            parent.remove();
-        }
-    });
-};
+pastElement(notes);
 
 
 
-console.log( findInTitel(titlesToDoArray, searchWord) );
+
+
+function getCopyelement(){
+    let element = document.getElementsByClassName('list-group-item');
+    return element[1].cloneNode(true);
+}
+
+function pastElement(notes){
+
+    notes.forEach(function(value){
+        let clonElement = getCopyelement();
+        let clonElementTitle = clonElement.children[0].children[0];
+        clonElementTitle.textContent = value.title;
+        placeToCopy.appendChild( clonElement );
+    })
+}
+
+
