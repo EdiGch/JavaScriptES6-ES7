@@ -22,6 +22,7 @@ ps.forEach(function(index){
 
 let newParagraf = document.createElement('p');
 newParagraf.textContent = 'New element from javascript';
+newParagraf.setAttribute('class', 'list-group-item')
 document.getElementById('list-notes').appendChild(newParagraf);
 
 
