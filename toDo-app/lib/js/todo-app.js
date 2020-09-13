@@ -35,7 +35,10 @@ let placeToCopy = document.getElementById('listToDo');
 
 pastElement(notes);
 
-
+document.querySelector("#create").addEventListener('click', function (e) {
+   let dateNow = new Date();
+    e.target.textContent = 'Czas: ' + dateNow.getDate() + '-' + dateNow.getMonth() + '-'+ dateNow.getFullYear() + ' houer: ' + dateNow.getHours();
+})
 
 
 

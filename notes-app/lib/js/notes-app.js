@@ -7,22 +7,17 @@ const notes = [{
 }, {
     title: 'Office modification',
     body: 'Get a new seat'
-}]
+}];
 
-// Query and remove
-const p = document.querySelector('p');
-//p.remove();
-
-// Query all and remove
-const ps = document.querySelectorAll('p');
-ps.forEach(function(index){
-    //console.log( index.textContent );
-    //index.remove();
+document.querySelector("#create").addEventListener('click', function (e) {
+    e.target.textContent = 'New value button after click';
 });
-
-let newParagraf = document.createElement('p');
-newParagraf.textContent = 'New element from javascript';
-newParagraf.setAttribute('class', 'list-group-item')
-document.getElementById('list-notes').appendChild(newParagraf);
+// remove All
+document.querySelector("#removeAllNotes").addEventListener('click', function () {
+    notesElements = document.querySelectorAll('.list-group-item');
+    notesElements.forEach(function (value){
+        value.remove()
+    })
+});
 
 
