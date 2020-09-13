@@ -40,7 +40,9 @@ document.querySelector("#create").addEventListener('click', function (e) {
     e.target.textContent = 'Czas: ' + dateNow.getDate() + '-' + dateNow.getMonth() + '-'+ dateNow.getFullYear() + ' houer: ' + dateNow.getHours();
 })
 
-
+document.querySelector('#seach-notes').addEventListener('input', function (e) {
+    console.log(e.target.value)
+})
 
 function getCopyelement(){
     let element = document.getElementsByClassName('list-group-item');

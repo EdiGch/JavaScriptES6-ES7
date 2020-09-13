@@ -9,6 +9,10 @@ const notes = [{
     body: 'Get a new seat'
 }];
 
+document.querySelector('#seach-notes').addEventListener('input', function (e) {
+    console.log(e.target.value)
+})
+
 document.querySelector("#create").addEventListener('click', function (e) {
     e.target.textContent = 'New value button after click';
 });
