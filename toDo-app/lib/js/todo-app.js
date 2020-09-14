@@ -59,17 +59,21 @@ const structureHtmlToDoList = function(notes, filters){
 
 };
 
-
-document.querySelector("#create").addEventListener('click', function (e) {
-   let dateNow = new Date();
-    e.target.textContent = 'Czas: ' + dateNow.getDate() + '-' + dateNow.getMonth() + '-'+ dateNow.getFullYear() + ' houer: ' + dateNow.getHours();
-})
-
 document.querySelector('#seach-notes').addEventListener('input', function (e) {
     filters.searchText = e.target.value;
     structureHtmlToDoList(notes, filters);
 });
 
 structureHtmlToDoList(notes, filters);
+
+document.querySelector('#addNewElement').addEventListener('submit', function (e) {
+    e.preventDefault();
+    notes.push({
+        title: e.target.elements.titleToDo.value,
+        complete: false
+    });
+    structureHtmlToDoList(notes, filters);
+    e.target.elements.titleToDo.value = '';
+})
 
 

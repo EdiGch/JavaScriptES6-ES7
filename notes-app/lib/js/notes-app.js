@@ -17,11 +17,6 @@ const renderNots = function(notes, filters){
     const filteredNotes = notes.filter(function (note) {
         return note.title.toLowerCase().includes(filters.searchText.toLowerCase());
     });
-
-    // let removeListNotes = document.querySelectorAll('.list-group-item');
-    // removeListNotes.forEach(function (note, index) {
-    //     note.remove();
-    // });
     document.querySelector('#list-notes').innerHTML = '';
 
     filteredNotes.forEach(function(note){
@@ -43,12 +38,11 @@ document.querySelector('#seach-notes').addEventListener('input', function (e) {
 document.querySelector("#create").addEventListener('click', function (e) {
     e.target.textContent = 'New value button after click';
 });
-// remove All
-document.querySelector("#removeAllNotes").addEventListener('click', function () {
-    notesElements = document.querySelectorAll('.list-group-item');
-    notesElements.forEach(function (value){
-        value.remove()
-    })
-});
+
+document.querySelector('#addElement').addEventListener('submit', function (e) {
+    e.preventDefault();
+    console.log(e.target.elements.titleNote.value);
+    e.target.elements.titleNote.value = '';
+})
 
 
