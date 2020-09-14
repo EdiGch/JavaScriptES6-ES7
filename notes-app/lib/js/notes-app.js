@@ -47,4 +47,8 @@ document.querySelector('#addElement').addEventListener('submit', function (e) {
     e.target.elements.forFan.checked = '';
 })
 
+document.querySelector('#filterBy').addEventListener('change', function (e) {
+    console.log(e.target.value);
+})
+
 
