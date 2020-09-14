@@ -43,6 +43,8 @@ document.querySelector('#addElement').addEventListener('submit', function (e) {
     e.preventDefault();
     console.log(e.target.elements.titleNote.value);
     e.target.elements.titleNote.value = '';
+    console.log(e.target.elements.forFan.checked);
+    e.target.elements.forFan.checked = '';
 })
 
 

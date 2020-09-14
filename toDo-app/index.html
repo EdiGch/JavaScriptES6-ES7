@@ -34,20 +34,20 @@
         </div>
         <div class="row">
             <div class="col-md-6 offset-md-3">
-                <form class="form-inline">
+                <form id="formHader" class="form-inline">
                     <input id="seach-notes" class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+                    <label>Hide complete<input type="checkbox" id="hideCompleteInput" ></label>
                 </form>
-
                 <div id="listToDo" class="list-group"></div>
-
                 <form id="addNewElement">
                     <input type="text" class="form-control mr-sm-2" placeholder="write title note" name="titleToDo">
+                    <label>
+                        Done / Not Done
+                        <input id="forFan" type="checkbox">
+                    </label>
                     <button class="btn btn-success">Create</button>
                 </form>
-
-
                 <button id="create" type="button" class="btn btn-success">Create</button>
-
             </div>
         </div>
     </div>

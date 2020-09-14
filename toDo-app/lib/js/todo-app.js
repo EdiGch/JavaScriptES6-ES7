@@ -13,19 +13,33 @@ const notes = [{
 }];
 
 const filters ={
-    searchText: ''
+    searchText: '',
+    hideComplete: false
 };
 
 const structureHtmlToDoList = function(notes, filters){
     let placeToCopy = document.getElementById('listToDo');
 
-    const filteredNotes = notes.filter(function (note) {
-        return note.title.toLowerCase().includes(filters.searchText.toLowerCase());
+    let filteredNotes = notes.filter(function (note) {
+        const searchTextMatch = note.title.toLowerCase().includes(filters.searchText.toLowerCase());
+        const hideCompleteMatch = !filters.hideComplete || !note.complete;
+        return searchTextMatch && hideCompleteMatch;
+
+        //return note.title.toLowerCase().includes(filters.searchText.toLowerCase());
     });
+
+    //filteredNotes = filteredNotes.filter(function (note) {
+        //return !filters.hideComplete || !note.complete;
+        // if(filters.hideComplete){
+        //     return !note.complete
+        // }else{
+        //     return true;
+        // }
+    //});
 
     const incomplete = filteredNotes.filter(function (note) {
         return !note.complete;
-    })
+    });
     document.querySelector('#listToDo').innerHTML = '';
 
     const summary = document.createElement('h2');
@@ -70,10 +84,15 @@ document.querySelector('#addNewElement').addEventListener('submit', function (e)
     e.preventDefault();
     notes.push({
         title: e.target.elements.titleToDo.value,
-        complete: false
+        complete: e.target.elements.forFan.checked
     });
     structureHtmlToDoList(notes, filters);
     e.target.elements.titleToDo.value = '';
+    e.target.elements.forFan.checked = '';
 })
 
+document.querySelector('#hideCompleteInput').addEventListener('change', function (e) {
+    filters.hideComplete = e.target.checked;
+    structureHtmlToDoList(notes, filters);
+})
 
