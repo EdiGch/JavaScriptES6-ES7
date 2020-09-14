@@ -10,30 +10,55 @@ const notes = [{
 }, {
     title: 'Put the car up for sale',
     complete: true
-}]
+}];
 
-// const titleToDo = document.getElementsByClassName('title-todo');
-// const searchWord = 'the';
-// var titlesToDoArray = Array.from(titleToDo);
-//
-// const findInTitel = function(titlesArray, searchString ){
-//
-//     titlesArray.forEach(function (value, index) {
-//         let parent = value.parentElement;
-//         parent = parent.parentElement
-//
-//         if(value.textContent.match(searchString) ){
-//             parent.remove();
-//         }
-//     });
-// };
-//
-// console.log( findInTitel(titlesToDoArray, searchWord) );
+const filters ={
+    searchText: ''
+};
 
+const structureHtmlToDoList = function(notes, filters){
+    let placeToCopy = document.getElementById('listToDo');
 
-let placeToCopy = document.getElementById('listToDo');
+    const filteredNotes = notes.filter(function (note) {
+        return note.title.toLowerCase().includes(filters.searchText.toLowerCase());
+    });
 
-pastElement(notes);
+    const incomplete = filteredNotes.filter(function (note) {
+        return !note.complete;
+    })
+    document.querySelector('#listToDo').innerHTML = '';
+
+    const summary = document.createElement('h2');
+    summary.textContent = `You have ${incomplete.length} todo left`;
+    placeToCopy.appendChild(summary);
+
+    filteredNotes.forEach(function (note) {
+
+        let aHref = document.createElement('a');
+        aHref.setAttribute('class', 'list-group-item list-group-item-action');
+
+        let divChild = document.createElement('div');
+        divChild.setAttribute('class', 'd-flex w-100 justify-content-between');
+
+        let title = document.createElement('h5');
+        title.setAttribute('class', 'mb-1 title-todo');
+
+        let small = document.createElement('small');
+        let description = document.createElement('p');
+        description.setAttribute('class', 'mb-1 description-todo');
+
+        placeToCopy.appendChild(aHref);
+        aHref.appendChild(divChild);
+        title.textContent = note.title;
+        divChild.appendChild(title);
+        small.textContent = note.complete;
+        divChild.appendChild(small);
+        aHref.appendChild(description);
+
+    })
+
+};
+
 
 document.querySelector("#create").addEventListener('click', function (e) {
    let dateNow = new Date();
@@ -41,22 +66,10 @@ document.querySelector("#create").addEventListener('click', function (e) {
 })
 
 document.querySelector('#seach-notes').addEventListener('input', function (e) {
-    console.log(e.target.value)
-})
+    filters.searchText = e.target.value;
+    structureHtmlToDoList(notes, filters);
+});
 
-function getCopyelement(){
-    let element = document.getElementsByClassName('list-group-item');
-    return element[1].cloneNode(true);
-}
-
-function pastElement(notes){
-
-    notes.forEach(function(value){
-        let clonElement = getCopyelement();
-        let clonElementTitle = clonElement.children[0].children[0];
-        clonElementTitle.textContent = value.title;
-        placeToCopy.appendChild( clonElement );
-    })
-}
+structureHtmlToDoList(notes, filters);
 
 
