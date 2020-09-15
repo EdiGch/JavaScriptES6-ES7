@@ -1,16 +1,13 @@
-const notes = [{
-    title: 'my next trip',
-    body: 'I would like to go to Spain'
-}, {
-    title: 'Habbits to work on',
-    body: 'Exercise. Eating a bit better.'
-}, {
-    title: 'Office modification',
-    body: 'Get a new seat'
-}];
+let notes = [];
 
 const filters ={
     searchText: ''
+}
+
+// Check for existing saved data
+const notesJSON =  localStorage.getItem('notes');
+if(notesJSON !== null){
+    notes = JSON.parse(notesJSON);
 }
 
 const renderNots = function(notes, filters){
@@ -22,7 +19,13 @@ const renderNots = function(notes, filters){
     filteredNotes.forEach(function(note){
        let element = document.createElement('p');
        element.setAttribute('class', 'list-group-item');
-       element.textContent = note.title;
+
+       if(note.title.length > 0){
+           element.textContent = note.title;
+       }else{
+           element.textContent = 'Without title. System message.';
+       }
+
        document.querySelector('#list-notes').appendChild(element);
     });
 
@@ -42,13 +45,23 @@ document.querySelector("#create").addEventListener('click', function (e) {
 document.querySelector('#addElement').addEventListener('submit', function (e) {
     e.preventDefault();
     console.log(e.target.elements.titleNote.value);
-    e.target.elements.titleNote.value = '';
     console.log(e.target.elements.forFan.checked);
+    notes.push({
+        title: e.target.elements.titleNote.value,
+        complete: e.target.elements.forFan.checked
+    })
+    console.log(notes);
+    localStorage.setItem('notes', JSON.stringify(notes));
+    renderNots(notes, filters);
+
+    e.target.elements.titleNote.value = '';
     e.target.elements.forFan.checked = '';
-})
+});
 
 document.querySelector('#filterBy').addEventListener('change', function (e) {
     console.log(e.target.value);
-})
+});
+
+
 
 

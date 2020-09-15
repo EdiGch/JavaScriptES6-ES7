@@ -1,21 +1,15 @@
-const notes = [{
-    title: 'Wash the car',
-    complete: false
-}, {
-    title: 'Make an appointment with a hairdresser',
-    complete: true
-}, {
-    title: 'Do your shopping for the whole week',
-    complete: false
-}, {
-    title: 'Put the car up for sale',
-    complete: true
-}];
+let notes = [];
 
 const filters ={
     searchText: '',
     hideComplete: false
 };
+
+// Check for existing saved data
+const notesJSON =  localStorage.getItem('notes');
+if(notesJSON !== null){
+    notes = JSON.parse(notesJSON);
+}
 
 const structureHtmlToDoList = function(notes, filters){
     let placeToCopy = document.getElementById('listToDo');
@@ -63,7 +57,14 @@ const structureHtmlToDoList = function(notes, filters){
 
         placeToCopy.appendChild(aHref);
         aHref.appendChild(divChild);
-        title.textContent = note.title;
+
+
+        if(note.title.length > 0){
+            title.textContent = note.title;
+        }else{
+            title.textContent = 'Without title. System message.';
+        }
+
         divChild.appendChild(title);
         small.textContent = note.complete;
         divChild.appendChild(small);
@@ -85,10 +86,13 @@ document.querySelector('#addNewElement').addEventListener('submit', function (e)
     notes.push({
         title: e.target.elements.titleToDo.value,
         complete: e.target.elements.forFan.checked
-    });
+    })
+    localStorage.setItem('notes', JSON.stringify(notes));
     structureHtmlToDoList(notes, filters);
     e.target.elements.titleToDo.value = '';
     e.target.elements.forFan.checked = '';
+
+
 })
 
 document.querySelector('#hideCompleteInput').addEventListener('change', function (e) {
