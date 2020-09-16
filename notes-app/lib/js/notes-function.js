@@ -15,12 +15,17 @@ const saveNotes = function(notes){
 const generateDom = function(note){
     const element = document.createElement('p');
     element.setAttribute('class', 'list-group-item');
-
+    const button = document.createElement('button');
+    button.setAttribute('type', 'button');
+    button.setAttribute('class', 'btn btn-danger btn-sm float-right');
+    button.textContent = 'remove';
     if(note.title.length > 0){
         element.textContent = note.title;
     }else{
         element.textContent = 'Without title. System message.';
     }
+
+    element.appendChild(button);
     return element;
 }
 

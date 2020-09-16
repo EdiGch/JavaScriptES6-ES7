@@ -62,6 +62,14 @@ const generateTodoDOM = function (note, placeToCopy) {
     let description = document.createElement('p');
     description.setAttribute('class', 'mb-1 description-todo');
 
+    const button = document.createElement('button');
+    button.setAttribute('type', 'button');
+    button.setAttribute('class', 'btn btn-danger btn-sm float-right');
+    button.textContent = 'remove';
+
+    const checkbox = document.createElement('input');
+    checkbox.setAttribute('type', 'checkbox');
+
     placeToCopy.appendChild(aHref);
     aHref.appendChild(divChild);
 
@@ -72,10 +80,14 @@ const generateTodoDOM = function (note, placeToCopy) {
         title.textContent = 'Without title. System message.';
     }
 
+
+
     divChild.appendChild(title);
     small.textContent = note.complete;
     divChild.appendChild(small);
     aHref.appendChild(description);
+    description.appendChild(button);
+    description.appendChild(checkbox);
 }
 
 // Get the DOM elements for list summary
