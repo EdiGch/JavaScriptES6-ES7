@@ -15,6 +15,7 @@ structureHtmlToDoList(notes, filters);
 document.querySelector('#addNewElement').addEventListener('submit', function (e) {
     e.preventDefault();
     notes.push({
+        id: uuidv4(),
         title: e.target.elements.titleToDo.value,
         complete: e.target.elements.forFan.checked
     })

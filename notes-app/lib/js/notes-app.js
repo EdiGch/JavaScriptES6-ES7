@@ -9,13 +9,10 @@ document.querySelector('#seach-notes').addEventListener('input', function (e) {
     renderNots(notes, filters);
 })
 
-document.querySelector("#create").addEventListener('click', function (e) {
-    e.target.textContent = 'New value button after click';
-});
-
 document.querySelector('#addElement').addEventListener('submit', function (e) {
     e.preventDefault();
     notes.push({
+        id: uuidv4(),
         title: e.target.elements.titleNote.value,
         complete: e.target.elements.forFan.checked
     });
