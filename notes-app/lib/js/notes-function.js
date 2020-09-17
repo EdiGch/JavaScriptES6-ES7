@@ -12,6 +12,18 @@ const saveNotes = function(notes){
     localStorage.setItem('notes', JSON.stringify(notes));
 }
 
+const removeNote = function (id){
+    const noteIndex = notes.findIndex(function (note) {
+        return note.id === id;
+    });
+
+    if(noteIndex > -1 ){
+        notes.splice(noteIndex, 1);
+    }
+
+
+}
+
 const generateDom = function(note){
     const element = document.createElement('p');
     element.setAttribute('class', 'list-group-item');
@@ -24,6 +36,12 @@ const generateDom = function(note){
     }else{
         element.textContent = 'Without title. System message.';
     }
+
+    button.addEventListener('click', function(){
+       removeNote(note.id);
+       saveNotes(notes);
+       renderNots(notes, filters);
+    });
 
     element.appendChild(button);
     return element;

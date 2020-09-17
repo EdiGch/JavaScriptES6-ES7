@@ -14,6 +14,16 @@ const saveTodos = function (notes) {
     localStorage.setItem('notes', JSON.stringify(notes))
 }
 
+const removeToDo = function (id){
+    const noteIndex = notes.findIndex(function (note) {
+        return note.id === id;
+    });
+
+    if(noteIndex > -1 ){
+        notes.splice(noteIndex, 1);
+    }
+}
+
 // Render application todos based on filters
 const structureHtmlToDoList = function(notes, filters){
     const placeToCopy = document.getElementById('listToDo');
@@ -66,6 +76,12 @@ const generateTodoDOM = function (note, placeToCopy) {
     button.setAttribute('type', 'button');
     button.setAttribute('class', 'btn btn-danger btn-sm float-right');
     button.textContent = 'remove';
+
+    button.addEventListener('click', function () {
+        removeToDo(note.id);
+        saveTodos(notes);
+        structureHtmlToDoList(notes, filters);
+    })
 
     const checkbox = document.createElement('input');
     checkbox.setAttribute('type', 'checkbox');
