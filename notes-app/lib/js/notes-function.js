@@ -25,16 +25,28 @@ const removeNote = function (id){
 }
 
 const generateDom = function(note){
-    const element = document.createElement('p');
+    const element = document.createElement('div');
     element.setAttribute('class', 'list-group-item');
+
+    const paragraphForString = document.createElement('p');
+    const divForButton = document.createElement('div');
+
     const button = document.createElement('button');
     button.setAttribute('type', 'button');
     button.setAttribute('class', 'btn btn-danger btn-sm float-right');
     button.textContent = 'remove';
+
+    const editHref = document.createElement('a');
+    editHref.setAttribute('class', 'btn btn-warning btn-sm float-right link-for-editing');
+    editHref.setAttribute('href', `/edit.html#${note.id}`);
+    editHref.setAttribute('id', note.id);
+    editHref.setAttribute('style', 'margin-right: 5px');
+    editHref.textContent = 'edit';
+
     if(note.title.length > 0){
-        element.textContent = note.title;
+        paragraphForString.textContent = note.title;
     }else{
-        element.textContent = 'Without title. System message.';
+        paragraphForString.textContent = 'Without title. System message.';
     }
 
     button.addEventListener('click', function(){
@@ -43,7 +55,11 @@ const generateDom = function(note){
        renderNots(notes, filters);
     });
 
-    element.appendChild(button);
+    element.appendChild(paragraphForString);
+    element.appendChild(divForButton);
+
+    divForButton.appendChild(button);
+    divForButton.appendChild(editHref);
     return element;
 }
 

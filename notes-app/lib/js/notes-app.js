@@ -11,8 +11,9 @@ document.querySelector('#seach-notes').addEventListener('input', function (e) {
 
 document.querySelector('#addElement').addEventListener('submit', function (e) {
     e.preventDefault();
+    const id = uuidv4();
     notes.push({
-        id: uuidv4(),
+        id: id,
         title: e.target.elements.titleNote.value,
         complete: e.target.elements.forFan.checked
     });
