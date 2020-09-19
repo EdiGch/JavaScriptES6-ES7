@@ -24,6 +24,16 @@ const removeToDo = function (id){
     }
 }
 
+const toggleToDo = function(id){
+    const toDo = notes.find(function(key){
+        return key.id === id
+    })
+
+    if(toDo !== undefined){
+        toDo.complete = !toDo.complete
+    }
+}
+
 // Render application todos based on filters
 const structureHtmlToDoList = function(notes, filters){
     const placeToCopy = document.getElementById('listToDo');
@@ -85,6 +95,13 @@ const generateTodoDOM = function (note, placeToCopy) {
 
     const checkbox = document.createElement('input');
     checkbox.setAttribute('type', 'checkbox');
+    checkbox.checked = note.complete;
+
+    checkbox.addEventListener('change', function () {
+        toggleToDo(note.id)
+        saveTodos(notes);
+        structureHtmlToDoList(notes, filters);
+    });
 
     placeToCopy.appendChild(aHref);
     aHref.appendChild(divChild);
