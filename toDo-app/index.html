@@ -33,20 +33,28 @@
             </div>
         </div>
         <div class="row">
-            <div class="col-md-6 offset-md-3">
-                <form id="formHader" class="form-inline">
+            <div class="col-md-8 offset-md-2">
+                <form id="formHader" class="form-inline pb-3 pt-3">
                     <input id="seach-notes" class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
                     <label>Hide complete<input type="checkbox" id="hideCompleteInput" ></label>
                 </form>
-                <div id="listToDo" class="list-group"></div>
+
+                <div id="listToDo" class="list-group pb-3 pt-3"></div>
+
                 <form id="addNewElement">
-                    <input type="text" class="form-control mr-sm-2" placeholder="write title note" name="titleToDo">
-                    <label>
-                        Done / Not Done
-                        <input id="forFan" type="checkbox">
-                    </label>
-                    <button class="btn btn-success">Create</button>
+                    <div class="form-group">
+                        <label>Create new todo</label>
+                        <input type="text" class="form-control mr-sm-2" placeholder="Write title todo" name="titleToDo">
+                    </div>
+                    <div class="float-right">
+                        <label>
+                            Done / Not Done
+                            <input id="forFan" type="checkbox">
+                        </label>
+                        <button class="btn btn-success">Create new todo</button>
+                    </div>
                 </form>
+
             </div>
         </div>
     </div>

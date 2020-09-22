@@ -26,23 +26,49 @@
 <section>
     <div class="container">
         <div class="row">
-            <div class="col-md-6 offset-md-3">
-                <form class="form-inline">
-                    <input id="seach-notes" class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-                </form>
-                <select id="filterBy" class="custom-select">
-                    <option value="byEdited">Sort by last edited</option>
-                    <option value="byCreated">Sort by recently created</option>
-                    <option value="byAlphabetically">Sort by alphabetically</option>
-                </select>
+            <div class="col-md-8 offset-md-2">
+
+                <div class="row pb-5">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label>Please select a category</label>
+                            <select id="filterBy" class="custom-select">
+                                <option value="byEdited">Sort by last edited</option>
+                                <option value="byCreated">Sort by recently created</option>
+                                <option value="byAlphabetically">Sort by alphabetically</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <form>
+                            <div class="form-group">
+                                <label>Search note</label>
+                                <input id="seach-notes" class="form-control" type="search" placeholder="Search" aria-label="Search">
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-12 text-center">
+                        <h3>All notes</h3>
+                    </div>
+                </div>
                 <ul id="list-notes" class="list-group"></ul>
-                <form id="addElement" class="form-inline">
-                    <input type="text" class="form-control mr-sm-2" placeholder="write title note" name="titleNote">
-                    <label>
-                        Done / Not Done
-                        <input id="forFan" type="checkbox">
-                    </label>
-                    <button class="btn btn-success">Create</button>
+
+
+                <form id="addElement" class="pt-5">
+                    <div class="form-group">
+                        <label>Create new note</label>
+                        <input type="text" class="form-control mr-sm-2" placeholder="Write title note" name="titleNote">
+                    </div>
+                    <div class="float-right">
+                        <label>
+                            Done / Not Done
+                            <input id="forFan" type="checkbox">
+                        </label>
+                        <button class="btn btn-success">Create note</button>
+                    </div>
                 </form>
             </div>
         </div>
