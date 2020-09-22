@@ -32,7 +32,24 @@ window.addEventListener('storage', function (e) {
         notes = JSON.parse(e.newValue);
         renderNots(notes, filters);
     }
-})
+});
+
+const now = new Date();
+const timestamp = now.getTime();
+
+const myDate = new Date(timestamp);
+//console.log(myDate.getFullYear());
+
+const dateOne = new Date('September 26 2020 12:00:00');
+const dateTwo = new Date();
+const dateOneTimestamp = dateOne.getTime();
+const dateDwoTimestamp = dateTwo.getTime();
+
+if(dateOneTimestamp < dateDwoTimestamp ){
+    console.log(dateOne.toString());
+}else if(dateDwoTimestamp < dateOneTimestamp){
+    console.log(dateTwo.toString());
+}
 
 
 
