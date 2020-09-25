@@ -12,10 +12,13 @@ document.querySelector('#seach-notes').addEventListener('input', function (e) {
 document.querySelector('#addElement').addEventListener('submit', function (e) {
     e.preventDefault();
     const id = uuidv4();
+    const timestamp = moment().valueOf();
     notes.push({
         id: id,
         title: e.target.elements.titleNote.value,
-        complete: e.target.elements.forFan.checked
+        complete: e.target.elements.forFan.checked,
+        createdAt: timestamp,
+        updateAt: timestamp
     });
     saveNotes(notes);
     renderNots(notes, filters);
@@ -33,24 +36,3 @@ window.addEventListener('storage', function (e) {
         renderNots(notes, filters);
     }
 });
-
-const now = new Date();
-const timestamp = now.getTime();
-
-const myDate = new Date(timestamp);
-//console.log(myDate.getFullYear());
-
-const dateOne = new Date('September 26 2020 12:00:00');
-const dateTwo = new Date();
-const dateOneTimestamp = dateOne.getTime();
-const dateDwoTimestamp = dateTwo.getTime();
-
-if(dateOneTimestamp < dateDwoTimestamp ){
-    console.log(dateOne.toString());
-}else if(dateDwoTimestamp < dateOneTimestamp){
-    console.log(dateTwo.toString());
-}
-
-
-
-

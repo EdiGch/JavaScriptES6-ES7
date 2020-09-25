@@ -75,3 +75,8 @@ const renderNots = function(notes, filters){
     });
 
 };
+
+
+const generateLastEdited = function (timestamp){
+    return `The last edition was made: ${moment(timestamp).fromNow()}`;
+}
