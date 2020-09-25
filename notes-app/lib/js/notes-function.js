@@ -63,7 +63,49 @@ const generateDom = function(note){
     return element;
 }
 
+// Sort your notes by one of three ways
+const sortNotes = function(notes, sortBy){
+    if(sortBy === 'byEdited'){
+        return notes.sort(function (a,b) {
+            if(a.updateAt > b.updateAt){
+                return -1
+            } else if( a.updateAt < b.updateAt){
+                return 1
+            } else{
+                return 0;
+            }
+        });
+    } else if(sortBy === 'byCreated'){
+        console.log('Prawda')
+        let po = notes.sort(function (a,b) {
+            if(a.createAt > b.createAt){
+                return -1
+            } else if( a.createAt < b.createAt){
+                return 1
+            } else{
+                return 0;
+            }
+        });
+        console.log(po)
+        return  po
+    } else if(sortBy === 'byAlphabetically'){
+        return notes.sort(function (a,b) {
+            if(a.title.toLowerCase() < b.title.toLowerCase()){
+                return -1
+            } else if( a.title.toLowerCase() > b.title.toLowerCase() ){
+                return 1
+            } else{
+                return 0;
+            }
+        });
+    } else{
+        return notes
+    }
+}
+
 const renderNots = function(notes, filters){
+    notes = sortNotes(notes, filters.sortBy);
+
     const filteredNotes = notes.filter(function (note) {
         return note.title.toLowerCase().includes(filters.searchText.toLowerCase());
     });
