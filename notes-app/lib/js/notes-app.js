@@ -5,12 +5,12 @@ const filters ={
 }
 renderNots(notes, filters);
 
-document.querySelector('#seach-notes').addEventListener('input', function (e) {
+document.querySelector('#seach-notes').addEventListener('input', (e) => {
     filters.searchText = e.target.value
     renderNots(notes, filters);
 })
 
-document.querySelector('#addElement').addEventListener('submit', function (e) {
+document.querySelector('#addElement').addEventListener('submit', (e) => {
     e.preventDefault();
     const id = uuidv4();
     const timestamp = moment().valueOf();
@@ -27,13 +27,13 @@ document.querySelector('#addElement').addEventListener('submit', function (e) {
     e.target.elements.forFan.checked = '';
 });
 
-document.querySelector('#filterBy').addEventListener('change', function (e) {
+document.querySelector('#filterBy').addEventListener('change', (e) => {
     console.log(e.target.value);
     filters.sortBy = e.target.value;
     renderNots(notes, filters);
 });
 
-window.addEventListener('storage', function (e) {
+window.addEventListener('storage', (e) => {
     if(e.key === 'notes'){
         notes = JSON.parse(e.newValue);
         renderNots(notes, filters);

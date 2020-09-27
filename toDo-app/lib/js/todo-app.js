@@ -5,14 +5,14 @@ const filters ={
     hideComplete: false
 };
 
-document.querySelector('#seach-notes').addEventListener('input', function (e) {
+document.querySelector('#seach-notes').addEventListener('input', (e) => {
     filters.searchText = e.target.value;
     structureHtmlToDoList(notes, filters);
 });
 
 structureHtmlToDoList(notes, filters);
 
-document.querySelector('#addNewElement').addEventListener('submit', function (e) {
+document.querySelector('#addNewElement').addEventListener('submit', (e) => {
     e.preventDefault();
     notes.push({
         id: uuidv4(),
@@ -28,7 +28,7 @@ document.querySelector('#addNewElement').addEventListener('submit', function (e)
 
 })
 
-document.querySelector('#hideCompleteInput').addEventListener('change', function (e) {
+document.querySelector('#hideCompleteInput').addEventListener('change', (e) => {
     filters.hideComplete = e.target.checked;
     structureHtmlToDoList(notes, filters);
 })

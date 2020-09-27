@@ -1,5 +1,5 @@
 // Fetch existing todos from localStorage
-const getSavedTodos = function () {
+const getSavedTodos = () => {
     const todosJSON = localStorage.getItem('notes')
 
     if (todosJSON !== null) {
@@ -10,24 +10,20 @@ const getSavedTodos = function () {
 }
 
 // Save todos to localStorage
-const saveTodos = function (notes) {
+const saveTodos = (notes) => {
     localStorage.setItem('notes', JSON.stringify(notes))
 }
 
-const removeToDo = function (id){
-    const noteIndex = notes.findIndex(function (note) {
-        return note.id === id;
-    });
+const removeToDo = (id) =>{
+    const noteIndex = notes.findIndex( (note) => note.id === id );
 
     if(noteIndex > -1 ){
         notes.splice(noteIndex, 1);
     }
 }
 
-const toggleToDo = function(id){
-    const toDo = notes.find(function(key){
-        return key.id === id
-    })
+const toggleToDo = (id) => {
+    const toDo = notes.find((key) => key.id === id );
 
     if(toDo !== undefined){
         toDo.complete = !toDo.complete
@@ -35,10 +31,10 @@ const toggleToDo = function(id){
 }
 
 // Render application todos based on filters
-const structureHtmlToDoList = function(notes, filters){
+const structureHtmlToDoList = (notes, filters) => {
     const placeToCopy = document.getElementById('listToDo');
 
-    let filteredNotes = notes.filter(function (note) {
+    let filteredNotes = notes.filter( (note) => {
         const searchTextMatch = note.title.toLowerCase().includes(filters.searchText.toLowerCase());
         const hideCompleteMatch = !filters.hideComplete || !note.complete;
         return searchTextMatch && hideCompleteMatch;
@@ -55,20 +51,18 @@ const structureHtmlToDoList = function(notes, filters){
     // }
     //});
 
-    const incomplete = filteredNotes.filter(function (note) {
-        return !note.complete;
-    });
+    const incomplete = filteredNotes.filter( (note) => !note.complete );
     document.querySelector('#listToDo').innerHTML = '';
     placeToCopy.appendChild(generateSummaryDOM(incomplete));
 
-    filteredNotes.forEach(function (note) {
+    filteredNotes.forEach( (note) => {
         generateTodoDOM(note, placeToCopy)
     })
 
 };
 
 // Get the DOM elements for an individual note
-const generateTodoDOM = function (note, placeToCopy) {
+const generateTodoDOM = (note, placeToCopy) => {
     let aHref = document.createElement('a');
     aHref.setAttribute('class', 'list-group-item list-group-item-action');
 
@@ -97,7 +91,7 @@ const generateTodoDOM = function (note, placeToCopy) {
     checkbox.setAttribute('type', 'checkbox');
     checkbox.checked = note.complete;
 
-    checkbox.addEventListener('change', function () {
+    checkbox.addEventListener('change',() => {
         toggleToDo(note.id)
         saveTodos(notes);
         structureHtmlToDoList(notes, filters);
@@ -124,7 +118,7 @@ const generateTodoDOM = function (note, placeToCopy) {
 }
 
 // Get the DOM elements for list summary
-const generateSummaryDOM = function (incompleteTodos) {
+const generateSummaryDOM =  (incompleteTodos) => {
     const summary = document.createElement('h2')
     summary.textContent = `You have ${incompleteTodos.length} todos left`
     return summary
