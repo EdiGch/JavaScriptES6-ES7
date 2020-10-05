@@ -1,19 +1,21 @@
 // Reading of existing data localStorage
 const getSavedNotes = () => {
     const notesJSON =  localStorage.getItem('notes');
-    return notesJSON ? JSON.parse(notesJSON) : [];
+    try {
+        return notesJSON ? JSON.parse(notesJSON) : [];
+    }catch (e){
+        console.log( 'Memory failed? :( I\'m so sad. It\'s hard, we\'ll put it back on track. ' + e.message)
+        return [];
+    }
 }
 // Save the notes to localStorage
 const saveNotes = (notes) => { localStorage.setItem('notes', JSON.stringify(notes)) }
 // Remove a note from the list
 const removeNote = (id) => {
     const noteIndex = notes.findIndex( (note) => note.id === id );
-
     if(noteIndex > -1 ){
         notes.splice(noteIndex, 1);
     }
-
-
 }
 
 const generateDom = (note) => {

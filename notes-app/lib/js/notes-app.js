@@ -15,7 +15,7 @@ document.querySelector('#addElement').addEventListener('submit', (e) => {
     const id = uuidv4();
     const timestamp = moment().valueOf();
     notes.push({
-        id: id,
+        id:  uuidv4(),
         title: e.target.elements.titleNote.value,
         complete: e.target.elements.forFan.checked,
         createdAt: timestamp,

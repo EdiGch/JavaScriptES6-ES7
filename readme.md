@@ -25,6 +25,7 @@ JavaScript by building real-world apps. Includes 3 real-world projects. ES6/ES7.
 </ul>
 <h3>Libraries used</h3>
 <ul>
+    <li> <a href="https://getbootstrap.com/">Bootstrap 4.5</a></li>
     <li> <a href="https://momentjs.com/">Moment.js</a></li>
     <li> Uuid v4</li>
 </ul>
